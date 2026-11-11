@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Pet Champ</title>
+<meta name="description" content="A virtual-pet game: raise a baby lake monster from an egg on a Burlington beach.">
+<meta name="theme-color" content="#2b5d7a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pet Champ">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="scene"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="row1">
+      <button id="nameChip" class="chip" aria-label="About your pet"><span id="petName">Egg</span><small id="petStage">found on the beach</small></button>
+      <button id="sightChip" class="chip sight" aria-label="Sightings">
+        <svg viewBox="0 0 32 24" aria-hidden="true"><circle cx="8" cy="15" r="6.5"/><circle cx="24" cy="15" r="6.5"/><rect x="11" y="5" width="10" height="9" rx="3"/><circle cx="8" cy="15" r="3" class="lens"/><circle cx="24" cy="15" r="3" class="lens"/></svg>
+        <b id="sightN">0</b>
+      </button>
+      <button id="goalChip" class="chip sight goal" aria-label="Daily goals"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.2 1.3-6.6-4.9-4.6 6.6-.8z"/></svg><b id="goalN">0/3</b></button>
+      <button id="menuBtn" class="chip icon" aria-label="Menu"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="2.6" rx="1.3"/><rect x="4" y="11" width="16" height="2.6" rx="1.3"/><rect x="4" y="16" width="16" height="2.6" rx="1.3"/></svg></button>
+    </div>
+    <div id="needs">
+      <div class="need" data-k="hunger"><i class="ni hunger"></i><div class="bar"><b></b></div></div>
+      <div class="need" data-k="happy"><i class="ni happy"></i><div class="bar"><b></b></div></div>
+      <div class="need" data-k="energy"><i class="ni energy"></i><div class="bar"><b></b></div></div>
+      <div class="need" data-k="clean"><i class="ni clean"></i><div class="bar"><b></b></div></div>
+    </div>
+    <div id="eggBar" class="hidden"><span>Warmth</span><div class="bar"><b></b></div><span id="eggPct">hatching 0%</span></div>
+  </div>
+
+  <!-- Actions -->
+  <div id="actions" class="hidden">
+    <button data-act="feed"><i class="ai feed"></i><span>Feed</span></button>
+    <button data-act="play"><i class="ai play"></i><span>Play</span></button>
+    <button data-act="swim"><i class="ai swim"></i><span>Swim</span></button>
+    <button data-act="sleep"><i class="ai sleep"></i><span>Sleep</span></button>
+  </div>
+  <div id="bathBar" class="hidden"><span id="bathMsg">Scrub off the mud!</span><button id="bathDone" class="pill">Done</button></div>
+
+  <!-- mini-game HUD -->
+  <div id="mgHud" class="hidden">
+    <button id="mgQuit" class="chip icon" aria-label="Quit"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-width="3" stroke-linecap="round"/></svg></button>
+    <div class="mgTime"><b></b></div>
+    <div class="mgScore"><b id="mgScore">0</b><small id="mgCombo"></small></div>
+  </div>
+  <div id="mgIntro" class="hidden"><h2 id="mgTitle"></h2><p id="mgHow"></p></div>
+
+  <!-- Title -->
+  <section id="title">
+    <div class="tin">
+      <canvas id="logoPet" aria-hidden="true"></canvas>
+      <h1 class="logo" aria-label="Pet Champ"><span class="l1">PET</span><span class="l2">CHAMP</span></h1>
+      <p class="tagline">A virtual-pet game on the lake</p>
+      <button id="startBtn" class="big"><span id="startLbl">Find an egg</span></button>
+      <p class="tiny" id="titleSub">Raise a baby lake monster. It misses you when you're gone (but only a little).</p>
+    </div>
+  </section>
+
+  <div id="sheet" class="hidden"><div class="sheetIn"><div class="grab"></div><h3 id="sheetTitle"></h3><div id="sheetBody"></div></div></div>
+  <div id="card" class="hidden"><div class="cardIn"><div id="cardBody"></div><div id="cardBtns"></div></div></div>
+  <div id="toast"></div>
+  <div id="ghost" class="hidden"><i></i></div>
+</div>
+<script src="sim.js"></script>
+<script src="art.js"></script>
+<script src="audio.js"></script>
+<script src="games.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
